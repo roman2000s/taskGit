@@ -1,0 +1,28 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.search {
+    margin: 10px;
+}
+
+.items {
+    display: flex;
+    align-items:flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 3px;
+}
+
+.img_user {
+    height: 200px;
+    width: 200px;
+}
