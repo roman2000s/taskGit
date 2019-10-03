@@ -15,11 +15,12 @@ $root.innerHTML = `
 let $seachForm = document.querySelector("#seachForm");
 let $searchField = $seachForm.querySelector("#searchField");
 let $usersList = document.querySelector("#usersList");
-let $sortUsers = document.querySelector("#sortUsers");
+let $sortUsersBtn = document.querySelector("#sortUsers");
 
 $seachForm.addEventListener('submit', function(event) {
     event.preventDefault();
     let userName = $searchField.value;
+
     searchUsers(userName)
         .then(renderUsers);
 })
@@ -27,11 +28,8 @@ $seachForm.addEventListener('submit', function(event) {
 function renderUsers(usersData) {
     $usersList.innerHTML = usersData.map(el => `
     <div class="User">
-        <img src=${el.avatar_url} height=100 alt="">
+        <img src="${el.avatar_url}"  alt="UserPic">
         <span> ${el.login}</span>
     </div>
-    `)
+    `).join('')
 }
-
-
-
