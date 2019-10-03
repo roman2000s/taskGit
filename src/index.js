@@ -32,7 +32,6 @@ $sortUsersBtn.addEventListener("click", sorting);
 function renderUsers(usersData) {
     gitUsers = usersData;
 
-function renderUsers(usersData) {
     $usersList.innerHTML = usersData.map(el => `
     <div class="User">
         <img src="${el.avatar_url}"  alt="UserPic">
