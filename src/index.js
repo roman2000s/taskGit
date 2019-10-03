@@ -1,5 +1,5 @@
-import {searchUsers} from "./fetch";
-import {sortUsers} from "./sortUsers"
+import { searchUsers } from "./fetch";
+import { sortUsers } from "./sortUsers"
 
 let $root = document.querySelector("#root");
 
@@ -19,20 +19,21 @@ let $usersList = document.querySelector("#usersList");
 let $sortUsersBtn = document.querySelector("#sortUsers");
 let userSortDirection;
 
-$seachForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    let userName = $searchField.value;
+$seachForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  let userName = $searchField.value;
 
-    searchUsers(userName)
-        .then(renderUsers);
+  searchUsers(userName)
+    .then(items => {
+      gitUsers = items;
+      renderUsers(gitUsers);
+    });
 })
 
 $sortUsersBtn.addEventListener("click", sorting);
 
-function renderUsers(usersData) {
-    gitUsers = usersData;
-
-    $usersList.innerHTML = usersData.map(el => `
+function renderUsers(items) {
+  $usersList.innerHTML = items.map(el => `
     <div class="User">
         <img src="${el.avatar_url}"  alt="UserPic">
         <span> ${el.login}</span>
@@ -41,6 +42,6 @@ function renderUsers(usersData) {
 }
 
 function sorting() {
-    userSortDirection ==='desc' ? userSortDirection='asc': userSortDirection='desc';
-    renderUsers(sortUsers(gitUsers, userSortDirection))
+  userSortDirection = (userSortDirection === 'desc') ? 'asc' : 'desc';
+  renderUsers(sortUsers(gitUsers, userSortDirection))
 }
