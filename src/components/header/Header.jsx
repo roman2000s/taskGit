@@ -36,7 +36,7 @@ class Header extends Component {
           type="submit" 
           value="Search users" />
       </form>
-      <input className="sortUsersBtn" type="button" value="Sort users" onClick={(e) => this.handleSortUsers(e)} />
+      <button className="sortUsersBtn" type="button" onClick={(e) => this.handleSortUsers(e)}>Sort Users</button>
     </div>
   }
 }
