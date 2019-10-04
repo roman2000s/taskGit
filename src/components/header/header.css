@@ -1,0 +1,10 @@
+.header {
+    display: flex;
+    background: #ccc;
+    justify-content: center;
+    padding: 5px;
+}
+.header input, button {
+    padding: 5px;
+    margin: 0 5px;
+}
