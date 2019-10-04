@@ -18,6 +18,10 @@ class Header extends Component {
     })
   }
 
+  handleSortUsers(e) {
+    this.props.onSortUsers(e)
+  }
+
   render() {
     return <div className="header">
       <form className="searchUsersForm" id="searchUsersForm" onSubmit={(e) => this.handleGetUserLogin(e)}>
@@ -32,7 +36,7 @@ class Header extends Component {
           type="submit" 
           value="Search users" />
       </form>
-      <input className="sortUsersBtn" type="button" value="Sort users"/>
+      <input className="sortUsersBtn" type="button" value="Sort users" onClick={(e) => this.handleSortUsers(e)} />
     </div>
   }
 }
