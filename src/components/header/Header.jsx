@@ -1,47 +1,44 @@
-import { searchUsers } from "./fetch";
-import { sortUsers } from "./sortUsers"
+import React, { Component } from 'react';
+import './header.css';
 
-let $root = document.querySelector("#root");
+class Header extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { userlogin: '' }
+  }
 
-$root.innerHTML = `
-    <form id="seachForm">
-        <input id="searchField" name="searchField"/>
-        <button>search</button>
-    </form>
-    <button id="sortUsers">sort</button>
-    <div id="usersList"></div>
-`;
+  handleGetUserLogin(e) {
+    e.preventDefault();
+    this.state.userlogin ? this.props.onSearchUsers(this.state.userlogin) : alert("Login should not be empty");
+  }
 
-let gitUsers = [];
-let $seachForm = document.querySelector("#seachForm");
-let $searchField = $seachForm.querySelector("#searchField");
-let $usersList = document.querySelector("#usersList");
-let $sortUsersBtn = document.querySelector("#sortUsers");
-let userSortDirection;
+  handleChangeSUF(e) {
+    this.setState({
+      userlogin: e.target.value
+    })
+  }
 
-$seachForm.addEventListener('submit', function (event) {
-  event.preventDefault();
-  let userName = $searchField.value;
+  handleSortUsers(e) {
+    this.props.onSortUsers(e)
+  }
 
-  searchUsers(userName)
-    .then(items => {
-      gitUsers = items;
-      renderUsers(gitUsers);
-    });
-})
-
-$sortUsersBtn.addEventListener("click", sorting);
-
-function renderUsers(items) {
-  $usersList.innerHTML = items.map(el => `
-    <div class="User">
-        <img src="${el.avatar_url}"  alt="UserPic">
-        <span> ${el.login}</span>
+  render() {
+    return <div className="header">
+      <form className="searchUsersForm" id="searchUsersForm" onSubmit={(e) => this.handleGetUserLogin(e)}>
+        <span>Login: </span>
+        <input 
+          className="searchUsersField" 
+          name="searchUsersField"
+          value={this.state.userlogin}
+          onChange={e => this.handleChangeSUF(e)} />
+        <input 
+          className="searchUsersSubmit" 
+          type="submit" 
+          value="Search users" />
+      </form>
+      <button className="sortUsersBtn" type="button" onClick={(e) => this.handleSortUsers(e)}>Sort Users</button>
     </div>
-    `).join('');
+  }
 }
 
-function sorting() {
-  userSortDirection = (userSortDirection === 'desc') ? 'asc' : 'desc';
-  renderUsers(sortUsers(gitUsers, userSortDirection))
-}
+export default Header;
