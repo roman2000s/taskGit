@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import { searchUsers } from "../../helpers/searchUsers";
+import { sortUsers } from "../../helpers/sortUsers";
+import Header from "../header/Header"
+
 
 class App extends Component {
   constructor(props) {
@@ -6,50 +10,32 @@ class App extends Component {
     const users = [];
     this.state = {
       users,
-      comparator: "asc"
+      comparator: "desc",
     }
   }
 
-  searchUsers = (userName) => {
-    const BASE_URL = "https://api.github.com";
-    return fetch(BASE_URL + "/search/users?q=" + userName)
-      .then(response => response.json()).then(usersPagination => usersPagination.items)
-  }
-
-  getUsersList = (userName) => {
-    this.searchUsers(userName)
+  handleSearchUsers = (userName) => {
+    searchUsers(userName)
       .then(users => {
         this.setState({ users })
       });
   }
 
-  compareUsersAsc = (user1, user2) => {
-    return user2.login >= user1.login ? 1 : -1;
+  handleSortUsers = () => {
+    this.setState({
+      users: sortUsers(this.state.users, this.state.comparator),
+      comparator: this.state.comparator === "asc" ? "desc" : "asc"
+    })
   }
-
-  compareUsersDesc = (...args) => {
-    return -1 * this.compareUsersAsc(...args);
-  }
-
-  sortUsers = () => {
-    let users = this.state.users;
-    this.state.comparator === "asc"
-      ? this.setState({
-        users: [...users].sort(this.compareUsersAsc),
-        comparator: "desc"
-      })
-      : this.setState({
-        users: [...users].sort(this.compareUsersDesc),
-        comparator: "asc"
-      });
-  }
-
-
 
   render() {
     return (
       <div className="App">
-        Hello World!
+        <Header
+          onSearchUsers={this.handleSearchUsers}
+          onSortUsers={this.handleSortUsers}
+        />
+        {this.state.users.map(el => el.login)}
       </div>
     )
   }
