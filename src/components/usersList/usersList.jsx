@@ -6,8 +6,8 @@ class UsersList extends Component {
     return <div className={styles.usersList}>
       {
         users.map(user => {
-          return <div class={styles.userInfo}>
-            <div class={styles.userLogin}>{user.login}</div>
+          return <div className={styles.userInfo}>
+            <div className={styles.userLogin}>{user.login}</div>
             <img src={user.avatar_url} alt={user.login} />
           </div>
         })
@@ -16,7 +16,7 @@ class UsersList extends Component {
   }
 
   renderEmptyList() {
-    return <div class={styles.usersList}>
+    return <div className={styles.usersList}>
         Users not found
       </div>
   }
