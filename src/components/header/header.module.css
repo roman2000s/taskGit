@@ -4,8 +4,7 @@
     justify-content: center;
     padding: 5px;
 }
-
-.header input, button {
+input, button {
     padding: 5px;
     margin: 0 5px;
 }

@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import "./usersList.css";
+import styles from "./usersList.module.css";
 
 class UsersList extends Component {
   renderUsersList(users) {
-    console.log(users)
-    return <div className="usersList">
+    return <div className={styles.usersList}>
       {
         users.map(user => {
-          return <div className="userInfo">
-            <div className="userLogin">{user.login}</div>
+          return <div class={styles.userInfo}>
+            <div class={styles.userLogin}>{user.login}</div>
             <img src={user.avatar_url} alt={user.login} />
           </div>
         })
@@ -17,7 +16,7 @@ class UsersList extends Component {
   }
 
   renderEmptyList() {
-    return <div className="usersList">
+    return <div class={styles.usersList}>
         Users not found
       </div>
   }

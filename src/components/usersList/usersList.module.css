@@ -3,9 +3,9 @@
   flex-wrap: wrap;
   justify-content: center;
 }
-.usersList .userInfo {
+.userInfo {
   padding: 10px;
 }
-.userInfo img {
+img {
   width: 200px;
 }
