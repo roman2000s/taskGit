@@ -35,7 +35,6 @@ class App extends Component {
           onSearchUsers={this.handleSearchUsers}
           onSortUsers={this.handleSortUsers}
         />
-        {this.state.users.map(el => el.login)}
       </div>
     )
   }
