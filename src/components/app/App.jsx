@@ -22,10 +22,10 @@ class App extends Component {
   }
 
   handleSortUsers = () => {
-    this.setState({
-      users: sortUsers(this.state.users, this.state.comparator),
-      comparator: this.state.comparator === "asc" ? "desc" : "asc"
-    })
+    this.setState(state=>({
+      users: sortUsers(state.users, state.comparator),
+      comparator: state.comparator === "asc" ? "desc" : "asc"
+    }))
   }
 
   render() {
