@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import "./usersList.css";
 
-class UserList extends Component {
+class UsersList extends Component {
   renderUsersList(users) {
     console.log(users)
-    return <div className="userList">
+    return <div className="usersList">
       {
         users.map(user => {
           return <div className="userInfo">
@@ -27,4 +27,4 @@ class UserList extends Component {
   }
 }
 
-export default UserList;
+export default UsersList;
