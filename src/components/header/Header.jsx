@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './header.css';
+import styles from './header.module.css';
 
 class Header extends Component {
   constructor(props) {
@@ -23,20 +23,20 @@ class Header extends Component {
   }
 
   render() {
-    return <div className="header">
-      <form className="searchUsersForm" id="searchUsersForm" onSubmit={(e) => this.handleGetUserLogin(e)}>
+    return <div className={styles.header}>
+      <form className={styles.searchUsersForm} id="searchUsersForm" onSubmit={(e) => this.handleGetUserLogin(e)}>
         <span>Login: </span>
         <input 
-          className="searchUsersField" 
+          className={styles.searchUsersField}
           name="searchUsersField"
           value={this.state.userlogin}
           onChange={e => this.handleChangeSUF(e)} />
         <input 
-          className="searchUsersSubmit" 
+          className={styles.searchUsersSubmit} 
           type="submit" 
           value="Search users" />
       </form>
-      <button className="sortUsersBtn" type="button" onClick={(e) => this.handleSortUsers(e)}>Sort Users</button>
+      <button className={styles.sortUsersBtn} type="button" onClick={(e) => this.handleSortUsers(e)}>Sort Users</button>
     </div>
   }
 }

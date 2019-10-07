@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { searchUsers } from "../../helpers/searchUsers";
 import { sortUsers } from "../../helpers/sortUsers";
-import Header from "../header/Header"
+import Header from "../header/Header";
+import UsersList from "../usersList/usersList";
 
 
 class App extends Component {
   constructor(props) {
     super(props);
-    const users = [];
     this.state = {
-      users,
-      comparator: "desc",
+      users: "",
+      comparator: "desc"
     }
   }
 
@@ -35,6 +35,7 @@ class App extends Component {
           onSearchUsers={this.handleSearchUsers}
           onSortUsers={this.handleSortUsers}
         />
+        <UsersList usersList={this.state.users}/>
       </div>
     )
   }

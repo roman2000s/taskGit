@@ -1,0 +1,11 @@
+.usersList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.userInfo {
+  padding: 10px;
+}
+img {
+  width: 200px;
+}
