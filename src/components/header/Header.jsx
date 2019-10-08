@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from './header.module.css';
+import history from '../app/history';
 
 class Header extends Component {
   constructor(props) {
@@ -9,9 +10,10 @@ class Header extends Component {
 
   handleGetUserLogin(e) {
     e.preventDefault();
+    history.push('/users');
     this.state.userlogin ? this.props.onSearchUsers(this.state.userlogin) : alert("Login should not be empty");
   }
-
+  
   handleChangeSUF(e) {
     this.setState({
       userlogin: e.target.value

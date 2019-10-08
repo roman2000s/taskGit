@@ -3,7 +3,10 @@ import { searchUsers } from "../../helpers/searchUsers";
 import { sortUsers } from "../../helpers/sortUsers";
 import Header from "../header/Header";
 import UsersList from "../usersList/usersList";
+import { BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
+import UserItem from "../userItem/UserItem";
 
+import history from './history';
 
 class App extends Component {
   constructor(props) {
@@ -30,13 +33,25 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Header
-          onSearchUsers={this.handleSearchUsers}
-          onSortUsers={this.handleSortUsers}
-        />
-        <UsersList usersList={this.state.users}/>
-      </div>
+      <Router history={history}>
+        <div className="App">
+          <Header
+            onSearchUsers={this.handleSearchUsers}
+            onSortUsers={this.handleSortUsers}
+          />
+            <Switch>
+              <Route exact path="/">
+                <Redirect to={{
+                  pathname: "/users"
+                }} />
+              </Route>
+              <Route exact path="/users">
+                <UsersList usersList={this.state.users}/>
+              </Route>
+              <Route path="/users/:userlogin" component={UserItem} />
+            </Switch>
+        </div>
+      </Router>
     )
   }
 }
