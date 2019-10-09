@@ -3,10 +3,13 @@ import { searchUsers } from "../../helpers/searchUsers";
 import { sortUsers } from "../../helpers/sortUsers";
 import Header from "../header/Header";
 import UsersList from "../usersList/usersList";
-import { BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
-import UserItem from "../userItem/UserItem";
-
-import history from './history';
+import {
+  Switch,
+  Route,
+  Redirect,
+  withRouter
+} from "react-router-dom";
+import UserPage from "../userPage/UserPage";
 
 class App extends Component {
   constructor(props) {
@@ -18,6 +21,7 @@ class App extends Component {
   }
 
   handleSearchUsers = (userName) => {
+    this.props.history.push('/users');
     searchUsers(userName)
       .then(users => {
         this.setState({ users })
@@ -25,7 +29,7 @@ class App extends Component {
   }
 
   handleSortUsers = () => {
-    this.setState(state=>({
+    this.setState(state => ({
       users: sortUsers(state.users, state.comparator),
       comparator: state.comparator === "asc" ? "desc" : "asc"
     }))
@@ -33,27 +37,25 @@ class App extends Component {
 
   render() {
     return (
-      <Router history={history}>
-        <div className="App">
-          <Header
-            onSearchUsers={this.handleSearchUsers}
-            onSortUsers={this.handleSortUsers}
-          />
-            <Switch>
-              <Route exact path="/">
-                <Redirect to={{
-                  pathname: "/users"
-                }} />
-              </Route>
-              <Route exact path="/users">
-                <UsersList usersList={this.state.users}/>
-              </Route>
-              <Route path="/users/:userlogin" component={UserItem} />
-            </Switch>
-        </div>
-      </Router>
+      <div className="App">
+        <Header
+          onSearchUsers={this.handleSearchUsers}
+          onSortUsers={this.handleSortUsers}
+        />
+        <Switch>
+          <Route exact path="/users">
+            <UsersList usersList={this.state.users} />
+          </Route>
+          <Route path="/users/:userlogin" render={(params) => <UserPage userLogin={params.match.params.userlogin} />} />
+          <Route>
+            <Redirect to={{
+              pathname: "/users"
+            }} />
+          </Route>
+        </Switch>
+      </div>
     )
   }
 }
 
-export default App;
+export default withRouter(App);

@@ -7,7 +7,7 @@ class UsersList extends Component {
     return <div className={styles.usersList}>
       {
         users.map(user => {
-          return <Link to={"/users/" + user.login} >
+          return <Link key={user.login} to={"/users/" + user.login} >
             <div className={styles.userInfo}>
               <div className={styles.userLogin}>{user.login}</div>
               <img src={user.avatar_url} alt={user.login} />
