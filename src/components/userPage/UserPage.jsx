@@ -4,7 +4,7 @@ import { searchUser } from "../../helpers/searchUsers";
 
 class UserPage extends Component {
   state = {
-    user: []
+    user: null
   }
 
   componentDidMount() {
@@ -15,6 +15,8 @@ class UserPage extends Component {
   }
 
   render() {
+    if (!this.state.user) return 'loading';
+
     return <div className={styles.userinfo}>
       <div >Login: {this.state.user.login} </div>
       {this.state.user.name ? <div >Name: {this.state.user.name}</div> : false}
@@ -23,7 +25,7 @@ class UserPage extends Component {
       {this.state.user.company ? <div >Company: {this.state.user.company}</div> : false}
       {this.state.user.blog ? <div >Blog: {this.state.user.blog}</div> : false}
       <div >Cteared: {this.state.user.created_at}</div>
-      <img src={this.state.user.avatar_url} alt={this.state.user.login} className={styles.avatar}/>
+      <img src={this.state.user.avatar_url} alt={this.state.user.login} className={styles.avatar} />
     </div>
   }
 }
