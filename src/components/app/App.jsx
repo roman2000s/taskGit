@@ -43,15 +43,15 @@ class App extends Component {
           onSortUsers={this.handleSortUsers}
         />
         <Switch>
-          <Route exact path="/users">
-            <UsersList usersList={this.state.users} />
-          </Route>
+          <Route 
+            exact 
+            path="/users"
+            render={() => <UsersList usersList={this.state.users} />}
+          />
           <Route path="/users/:userlogin" render={(params) => <UserPage userLogin={params.match.params.userlogin} />} />
-          <Route>
-            <Redirect to={{
-              pathname: "/users"
-            }} />
-          </Route>
+          <Route
+            render={() => <Redirect to={{ pathname: "/users" }} />}
+          />
         </Switch>
       </div>
     )
