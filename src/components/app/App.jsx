@@ -3,7 +3,13 @@ import { searchUsers } from "../../helpers/searchUsers";
 import { sortUsers } from "../../helpers/sortUsers";
 import Header from "../header/Header";
 import UsersList from "../usersList/usersList";
-
+import {
+  Switch,
+  Route,
+  Redirect,
+  withRouter
+} from "react-router-dom";
+import UserPage from "../userPage/UserPage";
 
 class App extends Component {
   constructor(props) {
@@ -15,6 +21,7 @@ class App extends Component {
   }
 
   handleSearchUsers = (userName) => {
+    this.props.history.push('/users');
     searchUsers(userName)
       .then(users => {
         this.setState({ users })
@@ -22,7 +29,7 @@ class App extends Component {
   }
 
   handleSortUsers = () => {
-    this.setState(state=>({
+    this.setState(state => ({
       users: sortUsers(state.users, state.comparator),
       comparator: state.comparator === "asc" ? "desc" : "asc"
     }))
@@ -35,10 +42,20 @@ class App extends Component {
           onSearchUsers={this.handleSearchUsers}
           onSortUsers={this.handleSortUsers}
         />
-        <UsersList usersList={this.state.users}/>
+        <Switch>
+          <Route 
+            exact 
+            path="/users"
+            render={() => <UsersList usersList={this.state.users} />}
+          />
+          <Route path="/users/:userlogin" render={(params) => <UserPage userLogin={params.match.params.userlogin} />} />
+          <Route
+            render={() => <Redirect to={{ pathname: "/users" }} />}
+          />
+        </Switch>
       </div>
     )
   }
 }
 
-export default App;
+export default withRouter(App);

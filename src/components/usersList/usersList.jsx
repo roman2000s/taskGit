@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import styles from "./usersList.module.css";
+import { Link } from "react-router-dom";
 
 class UsersList extends Component {
   renderUsersList(users) {
     return <div className={styles.usersList}>
       {
         users.map(user => {
-          return <div className={styles.userInfo}>
-            <div className={styles.userLogin}>{user.login}</div>
-            <img src={user.avatar_url} alt={user.login} />
-          </div>
+          return <Link key={user.login} to={"/users/" + user.login} >
+            <div className={styles.userInfo}>
+              <div className={styles.userLogin}>{user.login}</div>
+              <img src={user.avatar_url} alt={user.login} />
+            </div>
+          </Link>
         })
       }
     </div>
