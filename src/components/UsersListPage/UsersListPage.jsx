@@ -13,7 +13,7 @@ export default function UsersListPage({ search, sort }) {
   }, [search, sort])
 
   useEffect(() => {
-    setUsers(u => sortUsers(u, sort))
+    setUsers(users => sortUsers(users, sort))
   }, [sort, search])
 
   if (users.length === 0) return <div className={styles.users}>No users</div>
