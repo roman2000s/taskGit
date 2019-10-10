@@ -1,0 +1,8 @@
+.header {
+  background: #a8d8ff;
+  display: flex;
+  justify-content: center;
+}
+.form {
+  padding: 5px;
+}

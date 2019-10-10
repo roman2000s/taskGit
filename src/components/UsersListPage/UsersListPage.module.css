@@ -1,0 +1,14 @@
+.users {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.img {
+  width: 150px;
+}
+.userInfo{
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  align-items: center;
+}

@@ -1,8 +1,9 @@
-.userinfo {
+.user {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 10px;
 }
 .avatar {
-  width: 20%;
+  width: 400px;
 }
