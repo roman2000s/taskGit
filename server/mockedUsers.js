@@ -1,4 +1,4 @@
-exports.items = [
+const USERS = [
   {
     "login": "A",
     "id": 1410106,
@@ -630,3 +630,5 @@ exports.items = [
     "score": 46.307312
   }
 ]
+
+module.exports = USERS
