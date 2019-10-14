@@ -1,10 +1,9 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
+const PORT = 3001;
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-});
+app.listen(PORT, () => console.log(`Example app listening on port ${PORT}`));
